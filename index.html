@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Pneumatología | Ntra. Sra. de Lourdes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Paleta de colores: Virgen de Lourdes (Blanco y Azul Cielo/Rey) */
+            --primary: #2980b9; /* Azul Mariano fuerte para lectura y botones */
+            --primary-light: #5dade2; /* Azul cielo para detalles */
+            --secondary: #f1c40f; /* Dorado (rosario/corona) */
+            --bg: #fdfbf7; /* Blanco hueso muy suave */
+            --text: #2c3e50; /* Gris oscuro para texto */
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header con degradado azul mariano */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+
+        header .parish-info {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            font-weight: 600;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Buscador */
+        .search-container {
+            max-width: 800px;
+            margin: -25px auto 30px;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .search-box {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            border: 1px solid #e1e1e1;
+        }
+
+        .search-box i {
+            color: var(--primary);
+            margin-left: 15px;
+            font-size: 1.2rem;
+        }
+
+        .search-box input {
+            border: none;
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            outline: none;
+            color: var(--text);
+        }
+
+        /* Grid de Recursos */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            flex: 1; /* Empuja el footer hacia abajo */
+        }
+
+        /* Tarjeta de Material */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary-light); /* Borde superior azul cielo */
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(41, 128, 185, 0.15);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .module-badge {
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #584608;
+        }
+
+        .file-type {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #d35400;
+            display: block;
+            margin-bottom: 5px;
+            float: right;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            clear: both;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 25px;
+            min-height: 60px; /* Para alinear botones */
+        }
+
+        .btn-download {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px; /* Botones más redondeados */
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: #1f618d;
+            transform: scale(1.02);
+        }
+
+        /* Footer Actualizado */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .developer-info {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            max-width: 800px;
+            margin: 10px auto 0;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-dove"></i> Cursos de Pneumatología</h1>
+        <div class="subtitle">Material de estudio de la Dimensión Diocesana de Nueva Evangelización y Catequesis (DIDINEC)</div>
+        <div class="parish-info">
+            <i class="fas fa-church"></i> Portal de recursos para la Iglesia de Nuestra Señora de Lourdes, Yucatán
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar tema (ej: Dones, Santificación, Historia)..." onkeyup="filterResources()">
+        </div>
+    </div>
+
+    <main class="container" id="resourcesGrid">
+        
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Módulo I</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">Introducción a la Pneumatología</h3>
+                <p class="card-desc">Fundamentos teológicos sobre la Tercera Persona de la Trinidad. Definición, etimología y su lugar en el plan de salvación.</p>
+                <a href="https://docs.google.com/presentation/d/1QfeYrmF0z562W-_NbA3lxLUZDsU75bsa/edit?usp=drive_link&ouid=104812833294210493900&rtpof=true&sd=true" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Módulo II</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">Cristo y el Espíritu Santo</h3>
+                <p class="card-desc">La relación divina: Evidencias bíblicas de la divinidad del Espíritu, sus atributos y su unidad sustancial con el Padre y el Hijo.</p>
+                <a href="https://docs.google.com/presentation/d/1713FkC11nblA_vSFJeM3fSOXPmkBCChH/edit?usp=drive_link&ouid=104812833294210493900&rtpof=true&sd=true" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Módulo III</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">El Espíritu en la Historia Bíblica</h3>
+                <p class="card-desc">El mover del <em>Ruach Elohim</em> en el Antiguo Testamento: Desde la creación, operando en los jueces y hablando a través de los profetas.</p>
+                <a href="https://docs.google.com/presentation/d/1n8VM6VKwuqBIlCuU9c4DelRixCUDm6Tq/edit?usp=drive_link&ouid=104812833294210493900&rtpof=true&sd=true" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Módulo IV</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">EL espíritu santo en los últimos días (Parte 1)</h3>
+                <p class="card-desc">Análisis de los santos inspirados por el espiritu santo y los Dones que el espiritu santo otorga</p>
+                <a href="https://docs.google.com/presentation/d/1V8NgDNtemdWexcaaZCuRJ8uijMT0VG6F/edit?usp=drive_link&ouid=104812833294210493900&rtpof=true&sd=true" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Módulo V</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">El espiritu santo en los últimos dias</h3>
+                <p class="card-desc">Analisis de los frutos del espiritu santo, las bienaventuranzas enseñadas por Cristo y dejar en claro que Dios le gusta esconderse entre nosotros</p>
+                <a href="https://docs.google.com/presentation/d/1ottvaAOX9wvXo3Vcv0CcRI710OTZgiE7/edit?usp=drive_link&ouid=104812833294210493900&rtpof=true&sd=true" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-body">
+                <span class="module-badge">Extra</span>
+                <span class="file-type"><i class="fas fa-file-powerpoint"></i> PPTX</span>
+                <h3 class="card-title">Proximamente</h3>
+                <p class="card-desc">Aun no hay nada.</p>
+                <a href="#" class="btn-download" download>
+                    <i class="fas fa-cloud-download-alt"></i> Descargar Material
+                </a>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="developer-info">
+            Desarrollo Web: José Manuel Mandujano Carrillo (bluemario´s Dev)
+        </div>
+        <p>Sitio creado para la comunidad pastoral de Lourdes, Yucatán, reutilizacion permitida.</p>
+        
+        <div class="disclaimer">
+            <strong>Nota de Créditos:</strong> Esta página web es un desarrollo independiente creado por José Manuel Mandujano Carrillo. 
+            No es un sitio oficial de la DIDINEC. Los materiales, presentaciones y contenido teológico aquí expuestos 
+            son propiedad de la <em>Dimensión Diocesana de Nueva Evangelización y Catequesis</em> y se utilizan aquí 
+            únicamente como recurso de apoyo para el estudio.
+        </div>
+    </footer>
+
+    <script>
+        function filterResources() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const grid = document.getElementById('resourcesGrid');
+            const cards = grid.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].getElementsByClassName('card-title')[0];
+                const desc = cards[i].getElementsByClassName('card-desc')[0];
+                
+                if (title || desc) {
+                    const titleText = title.textContent || title.innerText;
+                    const descText = desc.textContent || desc.innerText;
+                    
+                    if (titleText.toUpperCase().indexOf(filter) > -1 || descText.toUpperCase().indexOf(filter) > -1) {
+                        cards[i].style.display = "";
+                    } else {
+                        cards[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+</body>
+</html>
